@@ -1,0 +1,9 @@
+*~
+*.o
+\#*
+.#*
+compile_commands.json
+/build
+.cache
+client/client
+server/server
