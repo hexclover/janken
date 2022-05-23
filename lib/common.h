@@ -281,10 +281,16 @@ void queue_destroy(queue_t *);
 bool null_terminated(const char *str, size_t maxlen);
 bool is_nickchar(char);
 bool is_nickstr(const char *);
-
 int nick_cmp(const char *, const char *);
-int cmp_by_id(const void *u, const void *v);
-int cmp_by_nick(const void *u, const void *v);
+
+static inline int cmp_by_id(const void *u, const void *v) {
+    const user_info_t *uu = u, *uv = v;
+    return (uu->id > uv->id) - (uu->id < uv->id);
+}
+static inline int cmp_by_nick(const void *u, const void *v) {
+    const user_info_t *uu = u, *uv = v;
+    return nick_cmp(uu->nickname, uv->nickname);
+}
 #ifdef __IS_SERVER
 static inline int cmp_by_fd(const void *u, const void *v) {
     const user_info_t *uu = u, *uv = v;

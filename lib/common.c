@@ -34,16 +34,6 @@ int nick_cmp(const char *s, const char *t) {
     return strncasecmp(s, t, NICKNAME_LEN);
 }
 
-int cmp_by_id(const void *u, const void *v) {
-    const user_info_t *uu = u, *uv = v;
-    return (uu->id > uv->id) - (uu->id < uv->id);
-}
-
-int cmp_by_nick(const void *u, const void *v) {
-    const user_info_t *uu = u, *uv = v;
-    return nick_cmp(uu->nickname, uv->nickname);
-}
-
 void *xmalloc(size_t sz) {
     sz = max_(sz, 1);
     void *p = malloc(sz);
